@@ -6,19 +6,15 @@ public enum CustomBackground {
     case view(AnyView)
 }
 
-public extension EnvironmentValues {
-    @Entry var customBackgroundStyle: CustomBackground = .none
-}
-
 public struct CustomBackgroundModifier: ViewModifier {
     var background: Environment<CustomBackground>
 
-    public init(_: KeyPath<EnvironmentValues, CustomBackground>) {
-        background = Environment(\.customBackgroundStyle)
+    public init(_ keyPath: KeyPath<EnvironmentValues, CustomBackground>) {
+        self.background = Environment(keyPath)
     }
 
     public func body(content: Content) -> some View {
-        switch background.wrappedValue {
+        switch self.background.wrappedValue {
         case let .shapeStyle(shapeStyle):
             content.background(shapeStyle)
         case let .view(view):
