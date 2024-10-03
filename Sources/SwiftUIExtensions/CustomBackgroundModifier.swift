@@ -12,7 +12,7 @@ public enum CustomBackground {
     /// A background is applied using an `AnyShapeStyle`.
     case shapeStyle(AnyShapeStyle)
     /// A background is applied using an `AnyView`.
-    case view(AnyView)
+    case view(Alignment, AnyView)
 }
 
 /// A view modifier that applies a custom background to a view based on an environment value.
@@ -40,8 +40,8 @@ public struct CustomBackgroundModifier: ViewModifier {
         switch self.background.wrappedValue {
         case let .shapeStyle(shapeStyle):
             content.background(shapeStyle)
-        case let .view(view):
-            content.background { view }
+        case let .view(alignment, view):
+            content.background(alignment: alignment) { view }
         case .none:
             content
         }
@@ -65,8 +65,8 @@ public extension CustomBackgroundModifier {
     ///   - keyPath: A key path to a `CustomBackground` value in the environment.
     ///   - content: A closure that returns the view to use as the background.
     /// - Returns: A view that applies the specified environment value to the given view.
-    static func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, @ViewBuilder _ content: () -> V) -> some View {
-        view.environment(keyPath, .view(AnyView(content())))
+    static func customBackground<V: View>(alignment: Alignment = .center, _ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, @ViewBuilder _ content: () -> V) -> some View {
+        view.environment(keyPath, .view(alignment, AnyView(content())))
     }
 
     /// Stores a `CustomBackground.shapeStyle` value in the environment using the specified key path.
