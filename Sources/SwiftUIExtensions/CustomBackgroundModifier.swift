@@ -55,7 +55,11 @@ public extension CustomBackgroundModifier {
     ///   - keyPath: A key path to a `CustomBackground` value in the environment.
     ///   - style: The `CustomBackground` value to store in the environment.
     /// - Returns: A view that applies the specified environment value to the given view.
-    static func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ style: CustomBackground) -> some View {
+    static func customBackground<V: View>(
+        forView view: V,
+        keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>,
+        _ style: CustomBackground
+    ) -> some View {
         view.environment(keyPath, style)
     }
 
@@ -80,7 +84,11 @@ public extension CustomBackgroundModifier {
     ///   - keyPath: A key path to a `CustomBackground` value in the environment.
     ///   - s: The shape style to use as the background.
     /// - Returns: A view that applies the specified environment value to the given view.
-    static func customBackground<V: View, S: ShapeStyle>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ s: S) -> some View {
+    static func customBackground<V: View, S: ShapeStyle>(
+        forView view: V,
+        keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>,
+        _ s: S
+    ) -> some View {
         view.environment(keyPath, .shapeStyle(.init(s)))
     }
 }
