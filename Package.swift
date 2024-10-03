@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SwiftToolKit",
+    name: "DFKit",
     platforms: [
         .macOS(.v14),
         .iOS(.v17),
@@ -12,23 +12,24 @@ let package = Package(
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
-            name: "SwiftToolKit",
-            targets: ["SwiftToolKit"]
+            name: "DFKit",
+            targets: ["DFKit"]
         ),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftToolKit",
-            dependencies: ["CGExtensions", "SwiftUIExtensions", "Easing"]
+            name: "DFKit",
+            dependencies: ["CGExtensions", "SwiftUIExtensions", "Easing"],
+            path: "DFKit"
         ),
-        .target(name: "CGExtensions", path: "Sources/CGExtensions"),
-        .target(name: "Easing", path: "Sources/Easing"),
-        .target(name: "SwiftUIExtensions", dependencies: ["CGExtensions"], path: "Sources/SwiftUIExtensions"),
+        .target(name: "CGExtensions", path: "CGExtensions"),
+        .target(name: "Easing", path: "Easing"),
+        .target(name: "SwiftUIExtensions", dependencies: ["CGExtensions"], path: "SwiftUIExtensions"),
         .testTarget(
-            name: "swift-toolkitTests",
-            dependencies: ["SwiftToolKit"]
+            name: "DFKitTests",
+            dependencies: ["DFKit"]
         ),
     ]
 )
