@@ -5,7 +5,7 @@
 //  Created by Daniel Fortes on 23/09/24.
 //
 
-import CGExtensions
+import DFKitCoreGraphics
 import SwiftUI
 
 public extension Color {

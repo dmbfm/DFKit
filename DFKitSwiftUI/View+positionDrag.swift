@@ -1,4 +1,4 @@
-import CGExtensions
+import DFKitCoreGraphics
 import SwiftUI
 
 extension View {

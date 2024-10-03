@@ -1,4 +1,4 @@
-import Easing
+import DFKitEasing
 import SwiftUI
 
 public extension Gradient {

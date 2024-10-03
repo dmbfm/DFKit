@@ -1,6 +1,6 @@
 //
 //  CGColor.swift
-//  CGExtensions
+//  DFKitCoreGraphics
 //
 //  Created by Daniel Fortes on 23/09/24.
 //
