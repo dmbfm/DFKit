@@ -38,6 +38,11 @@ let package = Package(
             ],
             path: "DFKitMacros"
         ),
+        .executableTarget(
+            name: "DFKitMacrosClient",
+            dependencies: ["DFKit"],
+            path: "DFKitMacrosClient"
+        ),
         .target(
             name: "DFKitCoreGraphics",
             path: "DFKitCoreGraphics"

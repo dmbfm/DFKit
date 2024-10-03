@@ -13,23 +13,24 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
     func testMacro() throws {
         assertMacroExpansion(
             """
-            #CustomBackgroundViewExtension("nodeBackground", "nodeBackgroundKeyPath")
+            @CustomBackgroundViewExtension("nodeBackground", "nodeBackgroundKeyPath")
+            public extension View {}
             """,
             expandedSource:
             """
             public extension View {
+
                 func nodeBackground(_ style: CustomBackground) -> some View {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.nodeBackgroundKeyPath, style)
                 }
+
                 func nodeBackground<S>(_ style: S) -> some View where S: ShapeStyle {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.nodeBackgroundKeyPath, style)
                 }
+
                 func nodeBackground<V>(alignment: Alignment = .center, _ content: () -> V) -> some View where V: View {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.nodeBackgroundKeyPath, alignment: alignment, content)
                 }
-            }
-            public extension EnvironmentValues {
-                @Entry var nodeBackgroundKeyPath: CustomBackground = .none
             }
             """,
             macros: testMacros
@@ -39,10 +40,12 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
     func testMacroTooFewArgumentsDiagnostic() throws {
         assertMacroExpansion(
             """
-            #CustomBackgroundViewExtension(nodeBackground)
+            @CustomBackgroundViewExtension
+            public extension View {}
             """,
             expandedSource:
             """
+            public extension View {}
             """,
             diagnostics: [
                 .init(
@@ -56,10 +59,12 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
 
         assertMacroExpansion(
             """
-            #CustomBackgroundViewExtension()
+            @CustomBackgroundViewExtension("nodeBackground")
+            public extension View {}
             """,
             expandedSource:
             """
+            public extension View {}
             """,
             diagnostics: [
                 .init(
@@ -72,13 +77,16 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
         )
     }
 
+    // test too many args
     func testMacroTooManyArgumentsDiagnostic() throws {
         assertMacroExpansion(
             """
-            #CustomBackgroundViewExtension("nodeBackground", "style", "other")
+            @CustomBackgroundViewExtension("nodeBackground", "nodeBackgroundKeyPath", "extra")
+            public extension View {}
             """,
             expandedSource:
             """
+            public extension View {}
             """,
             diagnostics: [
                 .init(
@@ -91,29 +99,16 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
         )
     }
 
-    func testMacroArgumentNotStringLiteral() throws {
+    // test non-string args
+    func testMacroExpectedStringLiteralDiagnostic() throws {
         assertMacroExpansion(
             """
-            #CustomBackgroundViewExtension(20, "nodeBackgroundKeyPath")
+            @CustomBackgroundViewExtension(nodeBackground, nodeBackgroundKeyPath)
+            public extension View {}
             """,
             expandedSource:
             """
-            """,
-            diagnostics: [
-                .init(
-                    message: "Expected a string literal",
-                    line: 1,
-                    column: 1
-                ),
-            ],
-            macros: testMacros
-        )
-        assertMacroExpansion(
-            """
-            #CustomBackgroundViewExtension("nodeBackground", 20)
-            """,
-            expandedSource:
-            """
+            public extension View {}
             """,
             diagnostics: [
                 .init(
