@@ -11,12 +11,14 @@ public extension EnvironmentValues {
 }
 
 public struct CustomBackgroundModifier: ViewModifier {
-    @Environment(\.customBackgroundStyle) var background
+    var background: Environment<CustomBackground>
 
-    public init() {}
+    public init(_: KeyPath<EnvironmentValues, CustomBackground>) {
+        background = Environment(\.customBackgroundStyle)
+    }
 
     public func body(content: Content) -> some View {
-        switch background {
+        switch background.wrappedValue {
         case let .shapeStyle(shapeStyle):
             content.background(shapeStyle)
         case let .view(view):
