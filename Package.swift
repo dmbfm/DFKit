@@ -21,12 +21,12 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "DFKit",
-            dependencies: ["CGExtensions", "SwiftUIExtensions", "Easing"],
+            dependencies: ["CGExtensions", "DFKitSwiftUI", "Easing"],
             path: "DFKit"
         ),
         .target(name: "CGExtensions", path: "CGExtensions"),
         .target(name: "Easing", path: "Easing"),
-        .target(name: "SwiftUIExtensions", dependencies: ["CGExtensions"], path: "SwiftUIExtensions"),
+        .target(name: "DFKitSwiftUI", dependencies: ["CGExtensions"], path: "DFKitSwiftUI"),
         .testTarget(
             name: "DFKitTests",
             dependencies: ["DFKit"]
