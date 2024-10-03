@@ -1,5 +1,5 @@
 //
-//  Color.swift
+//  Color+Extensions.swift
 //  SwiftUIEx
 //
 //  Created by Daniel Fortes on 23/09/24.

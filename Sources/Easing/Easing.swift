@@ -124,6 +124,7 @@ private enum EasingMode {
             case .easeInOut:
                 return quadraticEaseInOut
             }
+
         case .cubic:
             switch self {
             case .easeIn:
@@ -133,6 +134,7 @@ private enum EasingMode {
             case .easeInOut:
                 return cubicEaseInOut
             }
+
         case .quartic:
             switch self {
             case .easeIn:
@@ -142,6 +144,7 @@ private enum EasingMode {
             case .easeInOut:
                 return quarticEaseInOut
             }
+
         case .quintic:
             switch self {
             case .easeIn:
@@ -151,6 +154,7 @@ private enum EasingMode {
             case .easeInOut:
                 return quinticEaseInOut
             }
+
         case .sine:
             switch self {
             case .easeIn:
@@ -160,6 +164,7 @@ private enum EasingMode {
             case .easeInOut:
                 return sineEaseInOut
             }
+
         case .circular:
             switch self {
             case .easeIn:
@@ -169,6 +174,7 @@ private enum EasingMode {
             case .easeInOut:
                 return circularEaseInOut
             }
+
         case .exponential:
             switch self {
             case .easeIn:
@@ -178,6 +184,7 @@ private enum EasingMode {
             case .easeInOut:
                 return exponentialEaseInOut
             }
+
         case .elastic:
             switch self {
             case .easeIn:
@@ -187,6 +194,7 @@ private enum EasingMode {
             case .easeInOut:
                 return elasticEaseInOut
             }
+
         case .back:
             switch self {
             case .easeIn:
@@ -196,6 +204,7 @@ private enum EasingMode {
             case .easeInOut:
                 return backEaseInOut
             }
+
         case .bounce:
             switch self {
             case .easeIn:

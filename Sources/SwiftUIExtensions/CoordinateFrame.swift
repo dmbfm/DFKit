@@ -9,25 +9,24 @@ import SwiftUI
 
 /// A type-erased coordinate space.
 public struct AnyCoordinateSpace: CoordinateSpaceProtocol {
-    
     private var value: any CoordinateSpaceProtocol
-    
+
     /// Creates a type-erased coordinate space that wraps the given instance.
     public init(_ value: CoordinateSpaceProtocol) {
         self.value = value
     }
-    
+
     public var coordinateSpace: CoordinateSpace {
-        value.coordinateSpace
+        self.value.coordinateSpace
     }
 }
 
-//public enum CoordinateFrameName {
+// public enum CoordinateFrameName {
 //    case int(Int)
 //    case string(String)
-//}
+// }
 //
-//public enum CoordinateFrame: CoordinateSpaceProtocol {
+// public enum CoordinateFrame: CoordinateSpaceProtocol {
 //    case global
 //    case local
 //    case named(CoordinateFrameName)
@@ -47,9 +46,9 @@ public struct AnyCoordinateSpace: CoordinateSpaceProtocol {
 //            }
 //        }
 //    }
-//}
+// }
 //
-//public extension CoordinateSpace {
+// public extension CoordinateSpace {
 //    var coordinateFrame: CoordinateFrame {
 //        switch self {
 //        case .global:
@@ -62,4 +61,4 @@ public struct AnyCoordinateSpace: CoordinateSpaceProtocol {
 //            fatalError("Unknown CoordinateSpace")
 //        }
 //    }
-//}
+// }
