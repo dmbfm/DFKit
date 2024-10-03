@@ -65,7 +65,12 @@ public extension CustomBackgroundModifier {
     ///   - keyPath: A key path to a `CustomBackground` value in the environment.
     ///   - content: A closure that returns the view to use as the background.
     /// - Returns: A view that applies the specified environment value to the given view.
-    static func customBackground<V: View>(alignment: Alignment = .center, _ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, @ViewBuilder _ content: () -> V) -> some View {
+    static func customBackground<V: View>(
+        _ view: V,
+        _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>,
+        alignment: Alignment = .center,
+        @ViewBuilder _ content: () -> V
+    ) -> some View {
         view.environment(keyPath, .view(alignment, AnyView(content())))
     }
 
