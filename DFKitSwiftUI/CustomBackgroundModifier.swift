@@ -6,6 +6,7 @@ import SwiftUI
 /// - `none`: No background is applied.
 /// - `shapeStyle`: A background is applied using an `AnyShapeStyle`.
 /// - `view`: A background is applied using an `AnyView`.
+@MainActor
 public enum CustomBackground {
     /// No background is applied.
     case none
