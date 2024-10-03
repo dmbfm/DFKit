@@ -17,7 +17,7 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
             """,
             expandedSource:
             """
-            extension View {
+            public extension View {
                 func nodeBackground(_ style: CustomBackground) -> some View {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.nodeBackgroundKeyPath, style)
                 }
@@ -28,7 +28,7 @@ final class CustomBackgroundViewExtensionMacroTests: XCTestCase {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.nodeBackgroundKeyPath, alignment: alignment, content)
                 }
             }
-            extension EnvironmentValues {
+            public extension EnvironmentValues {
                 @Entry var nodeBackgroundKeyPath: CustomBackground = .none
             }
             """,

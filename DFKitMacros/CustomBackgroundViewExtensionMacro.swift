@@ -39,7 +39,7 @@ public struct CustomBackgroundViewExtensionMacro: DeclarationMacro {
 
         return [
             """
-            extension View {
+            public extension View {
                 func \(raw: funcName)(_ style: CustomBackground) -> some View {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.\(raw: keyPath), style)
                 }
@@ -50,7 +50,7 @@ public struct CustomBackgroundViewExtensionMacro: DeclarationMacro {
                     CustomBackgroundModifier.customBackground(forView: self, keyPath: \\.\(raw: keyPath), alignment: alignment, content)
                 }
             }
-            extension EnvironmentValues {
+            public extension EnvironmentValues {
                 @Entry var \(raw: keyPath): CustomBackground = .none
             }
             """,
