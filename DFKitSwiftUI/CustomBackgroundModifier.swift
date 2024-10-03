@@ -15,6 +15,12 @@ public enum CustomBackground {
     case view(Alignment, AnyView)
 }
 
+extension View {
+    public func applyingCustomBackground(keyPath: KeyPath<EnvironmentValues, CustomBackground>) -> some View {
+        self.modifier(CustomBackgroundModifier(keyPath))
+    }
+}
+
 /// A view modifier that applies a custom background to a view based on an environment value.
 ///
 /// This modifier uses the `CustomBackground` enum to determine the type of background to apply:
