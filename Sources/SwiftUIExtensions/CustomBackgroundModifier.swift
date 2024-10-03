@@ -28,15 +28,15 @@ public struct CustomBackgroundModifier: ViewModifier {
 }
 
 public extension CustomBackgroundModifier {
-    func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ style: CustomBackground) -> some View {
+    static func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ style: CustomBackground) -> some View {
         view.environment(keyPath, style)
     }
 
-    func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, @ViewBuilder _ content: () -> V) -> some View {
+    static func customBackground<V: View>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, @ViewBuilder _ content: () -> V) -> some View {
         view.environment(keyPath, .view(AnyView(content())))
     }
 
-    func customBackground<V: View, S: ShapeStyle>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ s: S) -> some View {
+    static func customBackground<V: View, S: ShapeStyle>(_ view: V, _ keyPath: WritableKeyPath<EnvironmentValues, CustomBackground>, _ s: S) -> some View {
         view.environment(keyPath, .shapeStyle(.init(s)))
     }
 }
